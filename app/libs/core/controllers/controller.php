@@ -74,7 +74,6 @@ class Controller
 	 * Load a library file
 	 * @access	protected
 	 * @param	string	$libraryfile
-	 * @param	string	$data
 	 * @return	void
 	 */
 	protected static function loadLibrary( $libraryfile )
