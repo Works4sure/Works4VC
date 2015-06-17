@@ -14,6 +14,8 @@
 			font: 100%/1.5em 'Helvetica Neue', 'Arial', sans-serif;
 			font-weight: 300;
 			color: rgb(100,100,100);
+			padding-left: 1em;
+			padding-right: 1em;
 		}
 		body > div {
 			max-width: 768px;
@@ -27,8 +29,12 @@
 		}
 		h2 {
 			color: black;
+			font-weight: bold; 
 			font-size: 2em;
 			text-align: center;
+		}
+		h2, p {
+			margin-bottom: 1em;
 		}
 		hr {
 			margin: 2em 0;
@@ -40,7 +46,7 @@
 			color: black;
 			font-size: .9em;
 			font-family: 'Monaco', 'Courier New', sans-serif;
-			font-weight: 400;
+			font-weight: 600;
 		}
 		small {
 			display: block;
