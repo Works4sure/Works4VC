@@ -12,14 +12,13 @@ class HomeController extends Controller
 	// ------------------------------------------------------------------------
 	
 	/**
-	 * Class constructor
+	 * Index for this controller
 	 * @access	public
 	 * @param	void
 	 * @return	void
 	 */
-	public function __construct()
+	public function index()
 	{
-		parent::__construct();
 		$this->loadView('home_view', $this->data);
 	}
 }

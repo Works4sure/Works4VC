@@ -55,6 +55,7 @@ try
 		
 		// Instantiate requested controller
 		$controller = new $controller_class;
+		$controller->index();
 	}
 	else
 	{
