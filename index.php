@@ -19,7 +19,27 @@ include_once('app/config/settings.php');
 include_once('app/libs/core/config/settings.php');
 
 // Load core Controller
-include_once('app/libs/core/controllers/controller.php');	
+include_once('app/libs/core/controllers/controller.php');
+
+// Secure POST data:
+if (isset($_POST) && is_array($_POST))
+{
+	foreach ($_POST as $post_key => $post_value)
+	{
+		$_POST[trim(stripslashes(htmlspecialchars($post_key)))]
+			= trim(stripslashes(htmlspecialchars($post_value)));
+	}
+}
+
+// Secure GET data:
+if (isset($_GET) && is_array($_GET))
+{
+	foreach ($_GET as $get_key => $get_value)
+	{
+		$_GET[trim(stripslashes(htmlspecialchars($get_key)))]
+			= trim(stripslashes(htmlspecialchars($get_value)));
+	}
+}
 
 // Get URI segments
 $segments = explode('/', $_SERVER['REQUEST_URI']);

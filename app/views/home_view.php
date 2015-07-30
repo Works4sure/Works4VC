@@ -19,7 +19,7 @@
 		}
 		body > div {
 			max-width: 768px;
-			margin: 12.5% auto 2em;
+			margin: 4% auto 2em;
 			border: 1px solid rgb(215,215,215);
 			border-radius: 8px;
 			box-shadow: 0px 0px 20px rgba(0,0,0,.1);
