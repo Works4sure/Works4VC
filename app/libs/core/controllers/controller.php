@@ -62,9 +62,16 @@ class Controller
 	protected static function loadView( $viewfile, &$data = NULL)
 	{
 		$viewfile = trim(htmlspecialchars($viewfile));
-		if (file_exists('app/views/'.$viewfile.'.php'))
+		try
 		{
-			include_once('app/views/'.$viewfile.'.php');
+			if (file_exists('app/views/'.$viewfile.'.php'))
+			{
+				include_once('app/views/'.$viewfile.'.php');
+			} else throw new Exception('<b>Fatal error</b>: The corresponding view file could not be found.');
+		}
+		catch (Exception $e)
+		{
+			die ($e->getMessage());
 		}
 	}
 	
@@ -79,9 +86,16 @@ class Controller
 	protected static function loadLibrary( $libraryfile )
 	{
 		$libraryfile = trim(htmlspecialchars($libraryfile));
-		if (file_exists('app/libs/'.$libraryfile.'.php'))
+		try
 		{
-			include_once('app/libs/'.$libraryfile.'.php');
+			if (file_exists('app/libs/'.$libraryfile.'.php'))
+			{
+				include_once('app/libs/'.$libraryfile.'.php');
+			} else throw new Exception('<b>Fatal error</b>: The corresponding library file could not be found.');
+		}
+		catch (Exception $e)
+		{
+			die ($e->getMessage());
 		}
 	}
 }
