@@ -42,6 +42,10 @@ if (isset($_GET) && is_array($_GET))
 }
 
 // Get URI segments
+if (substr($_SERVER['REQUEST_URI'], -1) == '/')
+{
+	$_SERVER['REQUEST_URI'] = substr($_SERVER['REQUEST_URI'], 0, -1);
+}
 $segments = explode('/', $_SERVER['REQUEST_URI']);
 
 // Prevent XXS
