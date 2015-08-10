@@ -9,6 +9,7 @@
  */	
  
 define('BASEPATH', 				'http://localhost/git-local/Works4VC/');
+define('SERVERPATH',			'');
 define('CONTROLLER_SEGMENT', 	3);
 define('DEFAULT_SEGMENT', 		'home');
 define('DB_HOST', 				'');
