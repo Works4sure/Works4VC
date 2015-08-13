@@ -1,7 +1,7 @@
 <?php mb_internal_encoding("UTF-8");
 	
 /**
- * Routes file. (experimental) Change accordingly.
+ * Routes file. Change accordingly.
  *
  * @author Christiaan Hemerik <chris@works4sure.nl>
  * @package	<Works4VC>
