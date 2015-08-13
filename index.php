@@ -12,6 +12,9 @@
  * @version 0.1
  */	
 
+// Load user routes
+include_once('app/config/routes.php');
+
 // Load user settings
 include_once('app/config/settings.php');
 
@@ -67,6 +70,18 @@ if (! isset($segments[CONTROLLER_SEGMENT])
 	|| empty($segments[CONTROLLER_SEGMENT]))
 {
 	$segments[CONTROLLER_SEGMENT] = DEFAULT_SEGMENT;
+}
+
+// Check user defined routes and set canonical constant if applicable
+if (count($routes) > 0)
+{
+	if (array_key_exists($segments[CONTROLLER_SEGMENT], $routes))
+	{
+		if (! defined('CANONICAL'))
+			define('CANONICAL', BASEPATH.$routes[ $segments[CONTROLLER_SEGMENT] ]);
+		$segments = explode('/', $routes[ $segments[CONTROLLER_SEGMENT] ]);
+		$segments = array_combine(range(1, count($segments)), array_values($segments));
+	}
 }
 
 // Route to requested controller

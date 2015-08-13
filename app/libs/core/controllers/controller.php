@@ -37,6 +37,13 @@ class Controller
 	 */
 	protected $last_segment;
 	
+	/**
+	 * User defined routes
+	 * @access	private
+	 * @param	array
+	 */
+	private $routes;
+	
 	// ------------------------------------------------------------------------
 	
 	/**
@@ -45,12 +52,16 @@ class Controller
 	 * @param	void
 	 * @return	void
 	 */
-	public function __construct()
+	public function __construct( $routes = NULL )
 	{
+		// Connect to database (is applicable):
 		if (strlen(DB_HOST) > 0)
 		{
 			$this->connectDB();
 		}
+		
+		// Set routes property:
+		$this->routes = $routes;
 		
 		// Get URI segments for use in controllers:
 		Controller::getURISegments();
@@ -96,6 +107,23 @@ class Controller
 		{
 			unset($this->segments[CONTROLLER_SEGMENT]);
 			$this->segments = array_values($this->segments);
+		}
+		
+		// Check user defined routes
+		if (isset($this->segments[CONTROLLER_SEGMENT]))
+		{
+			if (count($this->routes) > 0)
+			{
+				if (array_key_exists($this->segments[CONTROLLER_SEGMENT], $this->routes))
+				{
+					if (! defined('CANONICAL'))
+						define('CANONICAL', BASEPATH.$this->routes[ $this->segments[CONTROLLER_SEGMENT] ]);
+					$this->segments = explode('/', $this->routes[ $this->segments[CONTROLLER_SEGMENT] ]);
+					$this->segments = array_combine(
+						range(1, count($this->segments)), array_values($this->segments)
+					);
+				}
+			}
 		}
 		
 		// Retrieve last URI segment:
