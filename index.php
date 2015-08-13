@@ -75,12 +75,14 @@ if (! isset($segments[CONTROLLER_SEGMENT])
 // Check user defined routes and set canonical constant if applicable
 if (count($routes) > 0)
 {
-	if (array_key_exists($segments[CONTROLLER_SEGMENT], $routes))
+	$uri = substr($_SERVER['REQUEST_URI'], 1);
+	if (! empty($uri) && array_key_exists($uri, $routes))
 	{
 		if (! defined('CANONICAL'))
-			define('CANONICAL', BASEPATH.$routes[ $segments[CONTROLLER_SEGMENT] ]);
-		$segments = explode('/', $routes[ $segments[CONTROLLER_SEGMENT] ]);
+			define('CANONICAL', BASEPATH.$routes[ $uri ]);
+		$segments = explode('/', $routes[ $uri ]);
 		$segments = array_combine(range(1, count($segments)), array_values($segments));
+		unset($uri);
 	}
 }
 

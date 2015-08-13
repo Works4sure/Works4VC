@@ -114,11 +114,12 @@ class Controller
 		{
 			if (count($this->routes) > 0)
 			{
-				if (array_key_exists($this->segments[CONTROLLER_SEGMENT], $this->routes))
+				$uri = substr($_SERVER['REQUEST_URI'], 1);
+				if (! empty($uri) && array_key_exists($uri, $this->routes))
 				{
 					if (! defined('CANONICAL'))
-						define('CANONICAL', BASEPATH.$this->routes[ $this->segments[CONTROLLER_SEGMENT] ]);
-					$this->segments = explode('/', $this->routes[ $this->segments[CONTROLLER_SEGMENT] ]);
+						define('CANONICAL', BASEPATH.$this->routes[ $uri ]);
+					$this->segments = explode('/', $this->routes[ $uri ]);
 					$this->segments = array_combine(
 						range(1, count($this->segments)), array_values($this->segments)
 					);
