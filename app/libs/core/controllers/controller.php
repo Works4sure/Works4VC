@@ -141,7 +141,7 @@ class Controller
 	 * @param	string	$data
 	 * @return	void
 	 */
-	protected static function loadView( $viewfile, &$data = NULL)
+	protected function loadView( $viewfile, &$data = NULL)
 	{
 		$viewfile = trim(htmlspecialchars($viewfile));
 		try
@@ -165,7 +165,7 @@ class Controller
 	 * @param	string	$libraryfile
 	 * @return	void
 	 */
-	protected static function loadLibrary( $libraryfile )
+	protected function loadLibrary( $libraryfile )
 	{
 		$libraryfile = trim(htmlspecialchars($libraryfile));
 		try
