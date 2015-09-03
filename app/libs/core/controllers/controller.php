@@ -101,6 +101,12 @@ class Controller
 		foreach ($this->segments as $key => $value)
 		{
 			$this->segments[trim($key)] = trim(htmlspecialchars($value));
+			if (stripos($this->segments[trim($key)], '?'))
+			{
+				$this->segments[trim($key)] = substr(
+					$this->segments[trim($key)], 0, stripos($this->segments[trim($key)], '?')
+				);
+			}
 		}
 		if (isset($this->segments[CONTROLLER_SEGMENT])
 			&& $this->segments[CONTROLLER_SEGMENT] == 'index.php')

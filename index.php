@@ -55,6 +55,17 @@ $segments = explode('/', $_SERVER['REQUEST_URI']);
 foreach ($segments as $key => $value)
 {
 	$segments[trim($key)] = trim(htmlspecialchars($value));
+	if (isset($segments[1])
+		&& substr($segments[1], 0, 1) == '?') $segments[1] = DEFAULT_SEGMENT;
+	else
+	{
+		if (stripos($segments[trim($key)], '?'))
+		{
+			$segments[trim($key)] = substr(
+				$segments[trim($key)], 0, stripos($segments[trim($key)], '?')
+			);
+		}
+	}
 }
 
 // Remove index.php from URI segments
